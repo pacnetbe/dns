@@ -1,0 +1,27 @@
+services:
+  dns-proxy-server:
+    image: defreitas/dns-proxy-server
+    container_name: <container_name> # eg: <dns-proxy-server>
+    hostname: <hostname> # eg: <dps> - name of the host
+    networks:
+      - <network> # eg: <dns> name of the docker network - all containers to be discovered have to be on that same network
+    ports:
+      - "53:53/tcp" # dns tcp resolution requests port
+      - "53:53/udp" # dns udp resolution requests port
+      - "5380:5380" # access to DNS-Proxy-Server interface
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./conf/config.json:/app/conf/config.json # this might need to be a host directory if ansible is used to deploy
+      # - /etc/dns-proxy-server/config
+    environment:
+      - DNS_DOMAIN=<domain> #eg. <server04.lan>
+      - AUTO_CONNECT_DPS_NETWORK=true
+      - DPS_NETWORK_NAME=<network name> # eg: <dns>
+      - DPS_NETWORK=false   # Disable DPS network creation
+      - NO_REMOTE_SERVERS=true
+      - LOG_LEVEL=INFO # INFO / DEBUG 
+
+networks:
+  <network>: # docker network name eg. <dns>
+    external: true  # make sure this exists already
+# replace <> with value (remove <>)
