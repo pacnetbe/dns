@@ -1,0 +1,2 @@
+# dns
+all about dns
