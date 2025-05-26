@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "logLevel": "INFO",
+  "registerContainerNames": true,
+  "domain": "<server.lan>",
+  "dpsNetwork": false,
+  "dpsNetworkName": ">network>",
+  "dpsNetworkAutoConnect": true,
+  "noRemoteServers": true,
+  "envs": []
+}
