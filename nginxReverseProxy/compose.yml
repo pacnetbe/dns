@@ -1,7 +1,7 @@
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
-    container_name: NGINX ProxyManager
+    container_name: NGINX-ProxyManager
     restart: unless-stopped
     ports:
       - '80:80'
